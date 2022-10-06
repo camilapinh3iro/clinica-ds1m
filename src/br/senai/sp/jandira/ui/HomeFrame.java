@@ -1,10 +1,15 @@
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import javax.swing.JTable;
+
 public class HomeFrame extends javax.swing.JFrame {
 
     public HomeFrame() {
         System.out.println("Criando a tela home...");
         initComponents();
+        PlanoDeSaudeDAO.criarPlanosDeSaudeTeste();
+        criarTabelaPlanosDeSaude();
     }
 
     @SuppressWarnings("unchecked")
@@ -33,11 +38,12 @@ public class HomeFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(null);
 
+        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setText("Sistema para Agendamento de Consultas");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(90, 20, 740, 40);
@@ -150,4 +156,23 @@ public class HomeFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollTablePlanosDeSaude;
     private javax.swing.JTable tablePlanosDeSaude;
     // End of variables declaration//GEN-END:variables
+
+    private void criarTabelaPlanosDeSaude() {
+        tablePlanosDeSaude.setModel(PlanoDeSaudeDAO.getTableModel());
+
+        //Desativar o redimencionamento da Jtable
+        tablePlanosDeSaude.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        // Definir a largura de cada coluna
+        tablePlanosDeSaude.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tablePlanosDeSaude.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tablePlanosDeSaude.getColumnModel().getColumn(2).setPreferredWidth(300);
+
+        //Impedir/bloquear a movimentação das colunas 
+        tablePlanosDeSaude.getTableHeader().setReorderingAllowed(false);
+
+        //Bloquear edição das células
+        tablePlanosDeSaude.setDefaultEditor(Object.class, null);
+
+    }
 }
