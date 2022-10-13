@@ -21,6 +21,17 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
     public static void gravar(PlanoDeSaude planoDeSaude) {
         planos.add(planoDeSaude);
     }
+    
+    public static boolean excluir(Integer codigo){
+        for(PlanoDeSaude p : planos) {
+            if(p.getCodigo().equals(codigo)){
+                planos.remove(p);
+                return true;
+            }
+        }
+        return false;
+        
+    }
 
     public static ArrayList<PlanoDeSaude> listarTodos() {
         return planos;
@@ -59,6 +70,7 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
         //para exibir os dados dos planos 
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
         return tableModel; 
+        
         
         
     }

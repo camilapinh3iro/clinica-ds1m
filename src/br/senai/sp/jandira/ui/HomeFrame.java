@@ -50,7 +50,7 @@ public class HomeFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 132, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
@@ -101,7 +101,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         buttonEspecialidades.setBackground(new java.awt.Color(246, 246, 246));
         buttonEspecialidades.setForeground(new java.awt.Color(246, 246, 246));
-        buttonEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/especialides32.png"))); // NOI18N
+        buttonEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/tarefa-concluida32.png"))); // NOI18N
         buttonEspecialidades.setToolTipText("Especialidades");
         getContentPane().add(buttonEspecialidades);
         buttonEspecialidades.setBounds(370, 100, 80, 60);
