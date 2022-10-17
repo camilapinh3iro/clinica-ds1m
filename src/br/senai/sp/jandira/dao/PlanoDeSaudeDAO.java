@@ -21,16 +21,35 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
     public static void gravar(PlanoDeSaude planoDeSaude) {
         planos.add(planoDeSaude);
     }
-    
-    public static boolean excluir(Integer codigo){
-        for(PlanoDeSaude p : planos) {
-            if(p.getCodigo().equals(codigo)){
+
+    public static boolean excluir(Integer codigo) {
+        for (PlanoDeSaude p : planos) {
+            if (p.getCodigo().equals(codigo)) {
                 planos.remove(p);
                 return true;
             }
         }
         return false;
-        
+
+    }
+
+    public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
+
+        for (PlanoDeSaude p : planos) {
+            if (p.getCodigo().equals(codigo)) {
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    public static void alterar(PlanoDeSaude planoDeSaude) {
+        for (PlanoDeSaude p : planos) {
+            if (p.getCodigo().equals(planoDeSaude.getCodigo()));
+            planos.set(planos.indexOf(p), planoDeSaude);
+            break;
+        }
     }
 
     public static ArrayList<PlanoDeSaude> listarTodos() {
@@ -69,9 +88,7 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
         //Criar um modelo que será utilizado pela JTable 
         //para exibir os dados dos planos 
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
-        return tableModel; 
-        
-        
-        
+        return tableModel;
+
     }
 }
