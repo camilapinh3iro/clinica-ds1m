@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.testes;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 
 public class TesteDao {
@@ -80,7 +81,12 @@ public class TesteDao {
         int i = PlanoDeSaudeDAO.listarTodos().indexOf(plano1);
         System.out.println(i);
         
+        Especialidade e1 = new Especialidade("descricao1", "descricao1"); 
+        Especialidade e2 = new Especialidade("descricao2", "descricao2");
+        Especialidade e3 = new Especialidade("descricao3", "descricao3");
+        Especialidade e4 = new Especialidade("descricao4", "descricao4");
         
+        System.out.println(e1.getCodigo());
 
 //		PlanoDeSaudeDAO dao = new PlanoDeSaudeDAO();
 //		dao.gravar(plano1);

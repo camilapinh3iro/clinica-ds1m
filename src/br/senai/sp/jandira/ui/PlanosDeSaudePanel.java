@@ -116,12 +116,14 @@ public class PlanosDeSaudePanel extends javax.swing.JPanel {
         if (linha != -1) {
             editar();
         } else {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor, selecione o plano de saúde que você deseja alterar!",
+                    "Plano De Saúde",
+                    JOptionPane.WARNING_MESSAGE);
+
         }
-        JOptionPane.showMessageDialog(
-                this,
-                "Por favor, selecione o plano de saúde que você deseja alterar!",
-                "Plano De Saúde",
-                JOptionPane.WARNING_MESSAGE);
 
 
     }//GEN-LAST:event_buttonAlterarPlanoDeSaudeActionPerformed

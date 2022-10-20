@@ -45,10 +45,13 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
     }
 
     public static void alterar(PlanoDeSaude planoDeSaude) {
+        
         for (PlanoDeSaude p : planos) {
-            if (p.getCodigo().equals(planoDeSaude.getCodigo()));
-            planos.set(planos.indexOf(p), planoDeSaude);
-            break;
+            if (p.getCodigo().equals(planoDeSaude.getCodigo())){
+                planos.set(planos.indexOf(p), planoDeSaude);
+                break;
+            }
+            
         }
     }
 
@@ -90,5 +93,7 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
         return tableModel;
 
+        
     }
 }
+

@@ -72,6 +72,11 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonSair.setForeground(new java.awt.Color(51, 0, 255));
         buttonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/exit-door.png"))); // NOI18N
         buttonSair.setToolTipText("Sair do sistema");
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSairActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonSair);
         buttonSair.setBounds(875, 100, 80, 60);
 
@@ -204,6 +209,10 @@ public class HomeFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_buttonPlanosDeSaudeActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_buttonSairActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgenda;
