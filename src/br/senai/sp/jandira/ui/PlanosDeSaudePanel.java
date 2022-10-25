@@ -174,7 +174,7 @@ public class PlanosDeSaudePanel extends javax.swing.JPanel {
     private javax.swing.JTable tablePlanosDeSaude;
     // End of variables declaration//GEN-END:variables
 
-    private void criarTabelaPlanosDeSaude() {
+private void criarTabelaPlanosDeSaude() {
         tablePlanosDeSaude.setModel(PlanoDeSaudeDAO.getTableModel());
 
         //Desativar o redimencionamento da Jtable

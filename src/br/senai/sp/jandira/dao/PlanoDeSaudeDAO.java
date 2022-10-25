@@ -86,7 +86,7 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
             i++;
         }
         // Definir um vetor com os nomes das colunas da tabelas
-        String[] titulos = {"Código", "operadora", "Tipo do plano"};
+        String[] titulos = {"Código", "Operadora", "Tipo do plano"};
 
         //Criar um modelo que será utilizado pela JTable 
         //para exibir os dados dos planos 

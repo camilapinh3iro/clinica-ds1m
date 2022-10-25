@@ -59,7 +59,9 @@ public class TesteArrayList {
 		
 		Especialidade e3 = new Especialidade();
 		e3.setNome("Fisioterapia");
-		e3.setDescricao("Cuida dos ossos e músculos.");
+		e3.setDescricao("Cuida dos ossos e músculos");
+                
+                Especialidade e4 = new Especialidade("teste", "teste");
 		
 		Especialidade teste = new Especialidade();
 		
@@ -69,6 +71,7 @@ public class TesteArrayList {
 		especialidades.add(e1);
 		especialidades.add(e2);
 		especialidades.add(e3);
+                especialidades.add(e4);
 		
 		for(Especialidade e : especialidades) {
 			System.out.printf("%s --> %s\n", e.getNome(), e.getDescricao());
