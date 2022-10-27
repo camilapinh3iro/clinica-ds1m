@@ -26,6 +26,7 @@ public class EspecialidadePanel extends javax.swing.JPanel {
         buttonAlterarEspecialidade = new javax.swing.JButton();
         buttonAdicionarEspecialidade = new javax.swing.JButton();
 
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setPreferredSize(new java.awt.Dimension(945, 370));
         setLayout(null);
 

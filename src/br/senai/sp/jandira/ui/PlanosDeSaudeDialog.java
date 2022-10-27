@@ -61,11 +61,11 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setLayout(null);
 
-        labelTitulo.setFont(new java.awt.Font("Arial Black", 0, 17)); // NOI18N
+        labelTitulo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo.setText("Planos De Saúde - ADICIONAR");
         jPanel1.add(labelTitulo);
-        labelTitulo.setBounds(60, 17, 300, 25);
+        labelTitulo.setBounds(60, 17, 300, 26);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -110,8 +110,8 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         jPanel2.add(textNomeDaOperadora);
         textNomeDaOperadora.setBounds(30, 100, 240, 30);
 
-        buttonCancelar.setBackground(new java.awt.Color(255, 51, 51));
-        buttonCancelar.setText("Cancelar");
+        buttonCancelar.setBackground(new java.awt.Color(246, 246, 246));
+        buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/excluir32.png"))); // NOI18N
         buttonCancelar.setToolTipText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,10 +119,10 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
             }
         });
         jPanel2.add(buttonCancelar);
-        buttonCancelar.setBounds(390, 230, 90, 40);
+        buttonCancelar.setBounds(435, 210, 70, 60);
 
-        buttonSalvar.setBackground(new java.awt.Color(0, 204, 0));
-        buttonSalvar.setText("Salvar");
+        buttonSalvar.setBackground(new java.awt.Color(246, 246, 246));
+        buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/salvar-arquivo32.png"))); // NOI18N
         buttonSalvar.setToolTipText("Salvar");
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,16 +130,16 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
             }
         });
         jPanel2.add(buttonSalvar);
-        buttonSalvar.setBounds(490, 230, 80, 40);
+        buttonSalvar.setBounds(515, 210, 70, 60);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 110, 600, 290);
 
-        labelDetalhesPlano.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        labelDetalhesPlano.setForeground(new java.awt.Color(255, 153, 0));
+        labelDetalhesPlano.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        labelDetalhesPlano.setForeground(new java.awt.Color(153, 153, 153));
         labelDetalhesPlano.setText("Detalhes do Plano De Saúde:");
         getContentPane().add(labelDetalhesPlano);
-        labelDetalhesPlano.setBounds(20, 70, 230, 30);
+        labelDetalhesPlano.setBounds(20, 70, 223, 30);
 
         setBounds(0, 0, 654, 461);
     }// </editor-fold>//GEN-END:initComponents
@@ -225,7 +225,7 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
 }
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-
+    dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,4 +243,5 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
     private javax.swing.JTextField textNomeDaOperadora;
     private javax.swing.JTextField textTipoDoPlano;
     // End of variables declaration//GEN-END:variables
+
 }

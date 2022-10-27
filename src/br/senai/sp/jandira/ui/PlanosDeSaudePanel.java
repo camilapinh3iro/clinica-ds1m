@@ -55,7 +55,7 @@ public class PlanosDeSaudePanel extends javax.swing.JPanel {
 
         buttonExcluirPlanoDeSaude.setBackground(new java.awt.Color(246, 246, 246));
         buttonExcluirPlanoDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete.png"))); // NOI18N
-        buttonExcluirPlanoDeSaude.setToolTipText("Excluir plano de saúde selecionado");
+        buttonExcluirPlanoDeSaude.setToolTipText("Excluir especialidade selecionado");
         buttonExcluirPlanoDeSaude.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirPlanoDeSaudeActionPerformed(evt);
@@ -66,7 +66,7 @@ public class PlanosDeSaudePanel extends javax.swing.JPanel {
 
         buttonAlterarPlanoDeSaude.setBackground(new java.awt.Color(246, 246, 246));
         buttonAlterarPlanoDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit.png"))); // NOI18N
-        buttonAlterarPlanoDeSaude.setToolTipText("Editar plano de saúde selecionado");
+        buttonAlterarPlanoDeSaude.setToolTipText("Editar especialidade selecionado");
         buttonAlterarPlanoDeSaude.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAlterarPlanoDeSaudeActionPerformed(evt);
@@ -77,7 +77,7 @@ public class PlanosDeSaudePanel extends javax.swing.JPanel {
 
         buttonAdicionarPlanoDeSaude.setBackground(new java.awt.Color(246, 246, 246));
         buttonAdicionarPlanoDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
-        buttonAdicionarPlanoDeSaude.setToolTipText("Adicionar plano de saúde");
+        buttonAdicionarPlanoDeSaude.setToolTipText("Adicionar especialidade");
         buttonAdicionarPlanoDeSaude.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarPlanoDeSaudeActionPerformed(evt);

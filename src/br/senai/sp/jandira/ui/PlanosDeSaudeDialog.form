@@ -48,7 +48,7 @@
         <Component class="javax.swing.JLabel" name="labelTitulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="17" style="0"/>
+              <Font name="Arial Black" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -159,9 +159,11 @@
         <Component class="javax.swing.JButton" name="buttonCancelar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="ff" type="rgb"/>
+              <Color blue="f6" green="f6" red="f6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/senai/sp/jandira/imagens/excluir32.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
@@ -169,16 +171,18 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="390" y="230" width="90" height="40"/>
+              <AbsoluteConstraints x="435" y="210" width="70" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="buttonSalvar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="cc" red="0" type="rgb"/>
+              <Color blue="f6" green="f6" red="f6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salvar"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/senai/sp/jandira/imagens/salvar-arquivo32.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Salvar"/>
           </Properties>
           <Events>
@@ -186,7 +190,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="490" y="230" width="80" height="40"/>
+              <AbsoluteConstraints x="515" y="210" width="70" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -195,16 +199,16 @@
     <Component class="javax.swing.JLabel" name="labelDetalhesPlano">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="1"/>
+          <Font name="Dialog" size="16" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Detalhes do Plano De Sa&#xfa;de:"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="70" width="230" height="30"/>
+          <AbsoluteConstraints x="20" y="70" width="-1" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

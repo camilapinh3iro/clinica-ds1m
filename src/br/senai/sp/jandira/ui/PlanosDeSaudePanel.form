@@ -78,7 +78,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/senai/sp/jandira/imagens/delete.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Excluir plano de sa&#xfa;de selecionado"/>
+        <Property name="toolTipText" type="java.lang.String" value="Excluir especialidade selecionado"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExcluirPlanoDeSaudeActionPerformed"/>
@@ -97,7 +97,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/senai/sp/jandira/imagens/edit.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Editar plano de sa&#xfa;de selecionado"/>
+        <Property name="toolTipText" type="java.lang.String" value="Editar especialidade selecionado"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAlterarPlanoDeSaudeActionPerformed"/>
@@ -116,7 +116,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/senai/sp/jandira/imagens/add.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Adicionar plano de sa&#xfa;de"/>
+        <Property name="toolTipText" type="java.lang.String" value="Adicionar especialidade"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAdicionarPlanoDeSaudeActionPerformed"/>

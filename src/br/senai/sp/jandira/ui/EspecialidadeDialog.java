@@ -62,11 +62,11 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setLayout(null);
 
-        labelTitulo.setFont(new java.awt.Font("Arial Black", 0, 17)); // NOI18N
+        labelTitulo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo.setText("Especialidades - ADICIONAR");
         jPanel1.add(labelTitulo);
-        labelTitulo.setBounds(60, 17, 300, 25);
+        labelTitulo.setBounds(60, 17, 300, 26);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -75,11 +75,11 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 640, 60);
 
-        labelEspecialidades.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        labelEspecialidades.setForeground(new java.awt.Color(255, 153, 0));
-        labelEspecialidades.setText("Detalhes da especialidade:");
+        labelEspecialidades.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        labelEspecialidades.setForeground(new java.awt.Color(153, 153, 153));
+        labelEspecialidades.setText("Detalhes da Especialidade:");
         getContentPane().add(labelEspecialidades);
-        labelEspecialidades.setBounds(20, 70, 230, 30);
+        labelEspecialidades.setBounds(20, 70, 260, 30);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(null);
@@ -117,27 +117,29 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         jPanel2.add(textNomeDaEspecialidade);
         textNomeDaEspecialidade.setBounds(30, 100, 240, 30);
 
-        buttonCancelar.setBackground(new java.awt.Color(255, 51, 51));
-        buttonCancelar.setText("Cancelar");
+        buttonCancelar.setBackground(new java.awt.Color(246, 246, 246));
+        buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/excluir32.png"))); // NOI18N
         buttonCancelar.setToolTipText("Cancelar");
+        buttonCancelar.setPreferredSize(new java.awt.Dimension(38, 39));
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarActionPerformed(evt);
             }
         });
         jPanel2.add(buttonCancelar);
-        buttonCancelar.setBounds(390, 230, 90, 40);
+        buttonCancelar.setBounds(435, 210, 70, 60);
 
-        buttonSalvar.setBackground(new java.awt.Color(0, 204, 0));
-        buttonSalvar.setText("Salvar");
+        buttonSalvar.setBackground(new java.awt.Color(246, 246, 246));
+        buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/salvar-arquivo32.png"))); // NOI18N
         buttonSalvar.setToolTipText("Salvar");
+        buttonSalvar.setPreferredSize(new java.awt.Dimension(38, 39));
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSalvarActionPerformed(evt);
             }
         });
         jPanel2.add(buttonSalvar);
-        buttonSalvar.setBounds(490, 230, 80, 40);
+        buttonSalvar.setBounds(515, 210, 70, 60);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 110, 600, 290);
@@ -154,7 +156,7 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_textNomeDaEspecialidadeActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-
+        dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
@@ -166,13 +168,13 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_buttonSalvarActionPerformed
     private void atualizar() {
-        
+
         especialidade.setNome(textNomeDaEspecialidade.getText());
         especialidade.setDescricao(textDescricao.getText());
 
         if (validarCadastro()) {
             EspecialidadeDAO.alterar(especialidade);
-            
+
             JOptionPane.showMessageDialog(
                     null,
                     "Especialidade atualizada com sucesso!",
@@ -200,7 +202,7 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
             dispose();
         }
     }
-    
+
     private boolean validarCadastro() {
         if (textNomeDaEspecialidade.getText().isEmpty()) {
 
@@ -227,12 +229,9 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
             return false;
         }
         return true;
-}
+    }
 
-    
-    
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonSalvar;
