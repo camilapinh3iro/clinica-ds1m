@@ -18,6 +18,14 @@ public class Especialidade {
         this.descricao = descricao;
         atualizarCodigo();
     }
+    
+    public Especialidade(Integer codigo, String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.codigo = codigo;
+        this.codigo = codigo;
+        contador++;
+    }
 
     public Especialidade(String nome) {
         this.nome = nome;
@@ -27,8 +35,8 @@ public class Especialidade {
 
     // metodos 
     private void atualizarCodigo() {
-        this.codigo = contador;
         contador++;
+        this.codigo = contador;
     }
 
     // Métodos de acesso getters and setters
@@ -60,4 +68,7 @@ public class Especialidade {
         return contador;
     }
 
+    public String getEspecialidadeSeparadoPorPontoEVingula(){
+            return this.codigo + ";" + this.nome + ";" + this.descricao;  
+        }
 }

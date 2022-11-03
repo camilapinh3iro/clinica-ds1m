@@ -3,6 +3,9 @@ package br.senai.sp.jandira.testes;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedWriter;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 
 public class TesteDao {
 
@@ -72,6 +75,20 @@ public class TesteDao {
             System.out.println("Operadora: " + p.getOperadora());
             System.out.println("-------------------------");
         }
+        
+        
+        
+//        try {
+//             BufferedWriter bw = Files.newBufferedWriter(
+//                    path,
+//                    StandardOpenOption.APPEND,
+//                    StandardOpenOption.WRITE);
+//            
+//            bw.write("");
+//            bw.newLine();
+//            bw.close();
+//        } catch (Exception e) {
+//        }
 
         // Testar o método getPlanoDeSaude() do dao
         PlanoDeSaude p = PlanoDeSaudeDAO.getPlanoDeSaude(101);
