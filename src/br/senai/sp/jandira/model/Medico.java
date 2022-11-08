@@ -1,53 +1,45 @@
 package br.senai.sp.jandira.model;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class Medico {
+public class Medico extends Pessoa {
 
-	private String nome;
-	private LocalDate dataDeNascimento;
-	private String sexo;
-	private String crm;
-	private Especialidade[] especialidades;
+    private static int contador = 100;
+    private static int quantidade;
+    private Integer codigo;
+    private String crm;
+    private ArrayList<Especialidade> especialidades = new ArrayList<>();
 
-	public String getNome() {
-		return nome;
-	}
+    public String getCrm() {
+        return crm;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setCrm(String crm) {
+        this.crm = crm;
+    }
 
-	public LocalDate getDataDeNascimento() {
-		return dataDeNascimento;
-	}
+    public ArrayList<Especialidade> getEspecialidades() {
+        return especialidades;
+    }
 
-	public void setDataDeNascimento(LocalDate dataDeNascimento) {
-		this.dataDeNascimento = dataDeNascimento;
-	}
+    public void setEspecialidades(ArrayList<Especialidade> especialidades) {
+        this.especialidades = especialidades;
+    }
 
-	public String getSexo() {
-		return sexo;
-	}
+    public int getQuantidade() {
+        return quantidade;
+    }
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
+    public Integer getCodigo() {
+        return codigo;
+    }
 
-	public String getCrm() {
-		return crm;
-	}
+    public int getContador() {
+        return contador;
+    }
 
-	public void setCrm(String crm) {
-		this.crm = crm;
-	}
-
-	public Especialidade[] getEspecialidades() {
-		return especialidades;
-	}
-
-	public void setEspecialidades(Especialidade[] especialidades) {
-		this.especialidades = especialidades;
-	}
-
+    public String getMedicoSeparadoPorPontoEVingula() {
+        return this.codigo + ";" + this.crm + ";" + this.getNome() + ";"
+                + this.getTelefone() + ";" + this.getEmail() + ";" + this.getDataNascimento();
+    }
 }
