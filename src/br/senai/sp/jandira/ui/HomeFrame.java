@@ -24,7 +24,7 @@ public class HomeFrame extends javax.swing.JFrame {
         initComponents();
         PlanoDeSaudeDAO.getListaPlanosDeSaude();
         EspecialidadeDAO.getListaEspecialidades();
-        MedicoDAO.getListaEsoecialidades();
+        MedicoDAO.getListaMedicos();
         initPanels();
 
     }

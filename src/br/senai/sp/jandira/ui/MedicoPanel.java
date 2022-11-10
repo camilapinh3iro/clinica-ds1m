@@ -149,7 +149,7 @@ public class MedicoPanel extends javax.swing.JPanel {
 //        System.out.println("resposta");
         if (resposta == 0) {
 
-            EspecialidadeDAO.excluir(getCodigo());
+            MedicoDAO.excluir(getCodigo());
             criarTabelaMedicos();
         }
 
@@ -170,7 +170,7 @@ public class MedicoPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollTableMedicos;
     private javax.swing.JTable tableMedicos;
     // End of variables declaration//GEN-END:variables
-private void criarTabelaMedicos() {
+    private void criarTabelaMedicos() {
         tableMedicos.setModel(MedicoDAO.getTableModel());
 
         //Desativar o redimencionamento da Jtable

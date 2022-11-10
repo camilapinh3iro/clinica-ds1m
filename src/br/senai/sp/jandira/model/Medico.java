@@ -8,8 +8,39 @@ public class Medico extends Pessoa {
     private static int quantidade;
     private Integer codigo;
     private String crm;
-    private ArrayList<Especialidade> especialidades = new ArrayList<>();
+    private ArrayList<Medico> medicos = new ArrayList<>();
+    
+    Pessoa pessoa = new Pessoa();
+    
+    // construtores
+     public Medico() {
+        atualizarCodigo();
+    }
 
+//    public Medico(Integer codigo, String nome, String crm, String email, String telefone, String  ) {
+//        
+//        
+//    }
+    
+    public Medico(Integer codigo, String nome, String crm) {
+        
+        this.codigo = codigo;
+        this.codigo = codigo;
+        contador++;
+    }
+
+//    public Medico(String nome) {
+//        
+//        atualizarCodigo();
+//    }
+    
+    
+// metodos de acesso
+    private void atualizarCodigo() {
+        contador++;
+        this.codigo = contador;
+    }
+    
     public String getCrm() {
         return crm;
     }
@@ -18,12 +49,12 @@ public class Medico extends Pessoa {
         this.crm = crm;
     }
 
-    public ArrayList<Especialidade> getEspecialidades() {
-        return especialidades;
+    public ArrayList<Medico> getMedico() {
+        return medicos;
     }
 
-    public void setEspecialidades(ArrayList<Especialidade> especialidades) {
-        this.especialidades = especialidades;
+    public void setMedicos(ArrayList<Medico> medicos) {
+        this.medicos = medicos;
     }
 
     public int getQuantidade() {

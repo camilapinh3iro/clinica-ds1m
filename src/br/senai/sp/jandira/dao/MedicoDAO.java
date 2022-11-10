@@ -120,7 +120,7 @@ public class MedicoDAO {
 
     public static void alterar(Medico medico) {
 
-        for (Medico p : medico) {
+        for (Medico p : medicos) {
             if (p.getCodigo().equals(medico.getCodigo())) {
                medicos.set(medicos.indexOf(p), medico);
                 break;
@@ -173,11 +173,35 @@ public class MedicoDAO {
             dados[i][1] = p.getCrm();
             dados[i][2] = p.getNome();
             
+            i++;
+        }
+        // Definir um vetor com os nomes das colunas da tabelas
+        String[] titulos = {"Código", "CRM", "Nome"};
+
+        //Criar um modelo que será utilizado pela JTable 
+        //para exibir os dados dos planos 
+        DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
+        return tableModel;
+
+    }
+    
+    public static DefaultTableModel getTableModelEspecialidades() {
+
+        //Matrix que receberá os planos de saúde 
+        // que serão utilizados na tabela
+        Object[][] dados = new Object[medicos.size()][2];
+
+        //For each para extrair cada objeto plano de saúde do
+        // arrraylist especialidades  e separar cada plano na matriz de dados 
+        int i = 0;
+        for (Medico p : medicos) {
+            dados[i][0] = p.getCodigo();
+            dados[i][1] = p.getNome();
             
             i++;
         }
         // Definir um vetor com os nomes das colunas da tabelas
-        String[] titulos = {"Código", "CRM", "Nome", "Telefone"};
+        String[] titulos = {"Código", "Especialidade"};
 
         //Criar um modelo que será utilizado pela JTable 
         //para exibir os dados dos planos 
