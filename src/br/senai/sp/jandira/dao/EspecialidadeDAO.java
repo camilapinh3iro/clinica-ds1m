@@ -185,5 +185,26 @@ public class EspecialidadeDAO {
         return tableModel;
 
     }
+    
+    public static DefaultTableModel getTableModelListaEspecialidades(){
+        Object[][] dados = new Object[especialidades.size()][2];
+
+        //For each para extrair cada objeto plano de saúde do
+        // arrraylist especialidades  e separar cada plano na matriz de dados 
+        int i = 0;
+        for (Especialidade p : especialidades) {
+            dados[i][0] = p.getCodigo();
+            dados[i][1] = p.getNome();
+            i++;
+        }
+        // Definir um vetor com os nomes das colunas da tabelas
+        String[] titulos = {"Código", "Nome da Especialidade"};
+
+        //Criar um modelo que será utilizado pela JTable 
+        //para exibir os dados dos planos 
+        DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
+        return tableModel;
+        
+    }
 
 }

@@ -280,17 +280,18 @@ public class HomeFrame extends javax.swing.JFrame {
         especialidadePanel.setBounds(
                 POSICAO_X, POSICAO_Y,
                 LARGURA, ALTURA);
+        getContentPane().add(especialidadePanel);
+        especialidadePanel.setVisible(false);
         
-        getContentPane().add(medicoPanel);
-        medicoPanel.setVisible(false);
 
         medicoPanel = new MedicoPanel();
         medicoPanel.setBounds(
                 POSICAO_X, POSICAO_Y,
                 LARGURA, ALTURA);
 
-        getContentPane().add(especialidadePanel);
-        especialidadePanel.setVisible(false);
+       
+        getContentPane().add(medicoPanel);
+        medicoPanel.setVisible(false);
 
     }
 

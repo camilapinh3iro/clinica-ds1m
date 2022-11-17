@@ -2,10 +2,9 @@ package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.MedicoDAO;
-import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.Medico;
-import br.senai.sp.jandira.model.PlanoDeSaude;
 import br.senai.sp.jandira.model.TipoOperacao;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -14,7 +13,10 @@ public class MedicoDialog extends javax.swing.JDialog {
 
     private TipoOperacao tipoOperacao;
     private Medico medico;
-    
+    private EspecialidadeDAO especialidadeDao;
+
+    int linha;
+
     public MedicoDialog() {
         initComponents();
         criarTabelaEspecialidades();
@@ -32,10 +34,26 @@ public class MedicoDialog extends javax.swing.JDialog {
         this.tipoOperacao = tipoOperacao;
         this.medico = medico;
 
-        //Preencher os campos caso o tipo de operaçaõ for alterar 
         if (tipoOperacao == TipoOperacao.ALTERAR) {
             preencherFormulario();
         }
+    }
+
+    public MedicoDialog(
+            java.awt.Frame parent,
+            boolean modal,
+            TipoOperacao tipoOperacao,
+            Medico medico,
+            EspecialidadeDAO especialidadeDao) {
+
+        super(parent, modal);
+        initComponents();
+        this.tipoOperacao = tipoOperacao;
+        this.medico = medico;
+
+        if (tipoOperacao == TipoOperacao.ALTERAR) {
+            preencherFormulario();
+        } 
     }
 
     private void preencherFormulario() {
@@ -46,7 +64,9 @@ public class MedicoDialog extends javax.swing.JDialog {
         textNomeDoMedico.setText(medico.getNome());
         textTelefone.setText(medico.getTelefone());
         textEmail.setText(medico.getEmail());
-        textDataNascimento.setText(medico.getDataNascimento().format(DateTimeFormatter.ISO_DATE));
+//        textDataNascimento.setText(textDataNascimento.getText());
+        criarTabelaEspecialidades();
+        criarTabelaEspecialidadesDoMedico();
 
     }
 
@@ -83,7 +103,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         buttonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 500));
+        setPreferredSize(new java.awt.Dimension(760, 615));
         getContentPane().setLayout(null);
 
         labelDetalhesMedico.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -258,7 +278,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         getContentPane().add(buttonSalvar);
         buttonSalvar.setBounds(660, 490, 70, 60);
 
-        pack();
+        setBounds(0, 0, 765, 611);
     }// </editor-fold>//GEN-END:initComponents
 
     private void textEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEmailActionPerformed
@@ -287,7 +307,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         textNomeDoMedico.setText(medico.getNome());
         textTelefone.setText(medico.getTelefone());
         textEmail.setText(medico.getEmail());
-//        textDataNascimento.setText(medico.getDataNascimento());
+//        textDataNascimento.setText(textDataNascimento.getText());
 
         if (validarCadastro()) {
             MedicoDAO.alterar(medico);
@@ -309,7 +329,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         textNomeDoMedico.setText(medico.getNome());
         textTelefone.setText(medico.getTelefone());
         textEmail.setText(medico.getEmail());
-        textDataNascimento.setText(medico.getDataNascimento().format(DateTimeFormatter.ISO_DATE));
+//        medico.setDataNascimento(LocalDate.parse(textDataNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
         if (validarCadastro()) {
             MedicoDAO.gravar(medico);
@@ -437,7 +457,7 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
     private void criarTabelaEspecialidades() {
-        tableEspecialidades.setModel(EspecialidadeDAO.getTableModel());
+        tableEspecialidades.setModel(EspecialidadeDAO.getTableModelListaEspecialidades());
 
         //Desativar o redimencionamento da Jtable
         tableEspecialidades.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -452,8 +472,8 @@ public class MedicoDialog extends javax.swing.JDialog {
         //Bloquear edição das células
         tableEspecialidades.setDefaultEditor(Object.class, null);
 
- }
-    
+    }
+
     private void criarTabelaEspecialidadesDoMedico() {
         tableEspecialidadesDoMedico.setModel(MedicoDAO.getTableModelEspecialidades());
 

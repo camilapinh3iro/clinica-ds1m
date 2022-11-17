@@ -120,7 +120,6 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         buttonCancelar.setBackground(new java.awt.Color(246, 246, 246));
         buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/excluir32.png"))); // NOI18N
         buttonCancelar.setToolTipText("Cancelar");
-        buttonCancelar.setPreferredSize(new java.awt.Dimension(38, 39));
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarActionPerformed(evt);
@@ -132,7 +131,6 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         buttonSalvar.setBackground(new java.awt.Color(246, 246, 246));
         buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/salvar-arquivo32.png"))); // NOI18N
         buttonSalvar.setToolTipText("Salvar");
-        buttonSalvar.setPreferredSize(new java.awt.Dimension(38, 39));
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSalvarActionPerformed(evt);
