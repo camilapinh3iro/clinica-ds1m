@@ -54,7 +54,7 @@ public class EspecialidadePanel extends javax.swing.JPanel {
 
         buttonExcluirEspecialidade.setBackground(new java.awt.Color(246, 246, 246));
         buttonExcluirEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete.png"))); // NOI18N
-        buttonExcluirEspecialidade.setToolTipText("Excluir plano de saúde selecionado");
+        buttonExcluirEspecialidade.setToolTipText("Excluir especialidade selecionada");
         buttonExcluirEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirEspecialidadeActionPerformed(evt);
@@ -65,7 +65,7 @@ public class EspecialidadePanel extends javax.swing.JPanel {
 
         buttonAlterarEspecialidade.setBackground(new java.awt.Color(246, 246, 246));
         buttonAlterarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit.png"))); // NOI18N
-        buttonAlterarEspecialidade.setToolTipText("Editar plano de saúde selecionado");
+        buttonAlterarEspecialidade.setToolTipText("Editar especialidade selecionada");
         buttonAlterarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAlterarEspecialidadeActionPerformed(evt);
@@ -76,7 +76,7 @@ public class EspecialidadePanel extends javax.swing.JPanel {
 
         buttonAdicionarEspecialidade.setBackground(new java.awt.Color(246, 246, 246));
         buttonAdicionarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
-        buttonAdicionarEspecialidade.setToolTipText("Adicionar plano de saúde");
+        buttonAdicionarEspecialidade.setToolTipText("Adicionar especialidade");
         buttonAdicionarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarEspecialidadeActionPerformed(evt);

@@ -2,12 +2,18 @@ package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.TipoOperacao;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListModel;
 
 public class MedicoDialog extends javax.swing.JDialog {
 
@@ -15,12 +21,19 @@ public class MedicoDialog extends javax.swing.JDialog {
     private Medico medico;
     private EspecialidadeDAO especialidadeDao;
 
+    private DefaultListModel<Especialidade> listaTodasEspecialidadesModel = new DefaultListModel<>();
+    private ArrayList<Especialidade> especialidades = new ArrayList<>();
+
+    private DefaultListModel<Especialidade> especialidadesMedicoModel = new DefaultListModel<>();
+    private ArrayList<Especialidade> especialidadesMedico = new ArrayList<>();
+    
+     List especialidadesMedicoList = Arrays.asList(especialidadesMedico);
+
     int linha;
 
     public MedicoDialog() {
         initComponents();
-        criarTabelaEspecialidades();
-        criarTabelaEspecialidadesDoMedico();
+
     }
 
     public MedicoDialog(
@@ -53,7 +66,7 @@ public class MedicoDialog extends javax.swing.JDialog {
 
         if (tipoOperacao == TipoOperacao.ALTERAR) {
             preencherFormulario();
-        } 
+        }
     }
 
     private void preencherFormulario() {
@@ -64,9 +77,10 @@ public class MedicoDialog extends javax.swing.JDialog {
         textNomeDoMedico.setText(medico.getNome());
         textTelefone.setText(medico.getTelefone());
         textEmail.setText(medico.getEmail());
+//        listaTodasEspecialidadesModel();
 //        textDataNascimento.setText(textDataNascimento.getText());
-        criarTabelaEspecialidades();
-        criarTabelaEspecialidadesDoMedico();
+//        criarTabelaEspecialidades();
+//        criarTabelaEspecialidadesDoMedico();
 
     }
 
@@ -74,6 +88,9 @@ public class MedicoDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        labelTitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         labelDetalhesMedico = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         labelEmail = new javax.swing.JLabel();
@@ -88,19 +105,29 @@ public class MedicoDialog extends javax.swing.JDialog {
         textCrm = new javax.swing.JTextField();
         labelDataNascimento = new javax.swing.JLabel();
         textDataNascimento = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableEspecialidadesDoMedico = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableEspecialidades = new javax.swing.JTable();
         labelNomeDoMedico = new javax.swing.JLabel();
         labelListaEspecialidades = new javax.swing.JLabel();
         buttonRetirar = new javax.swing.JButton();
         buttonAdicionar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        labelTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListEspecialidadesMedico = new javax.swing.JList<Especialidade>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListEspecialidades = new javax.swing.JList<Especialidade>();
         buttonCancelar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setLayout(null);
+
+        labelTitulo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitulo.setText("Médicos - ADICIONAR");
+        jPanel1.add(labelTitulo);
+        labelTitulo.setBounds(60, 17, 300, 26);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(20, 10, 40, 40);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(760, 615));
@@ -158,7 +185,7 @@ public class MedicoDialog extends javax.swing.JDialog {
 
         labelEspecialidadesMedico.setText("Especialidades do médico:");
         jPanel2.add(labelEspecialidadesMedico);
-        labelEspecialidadesMedico.setBounds(320, 180, 150, 20);
+        labelEspecialidadesMedico.setBounds(280, 180, 150, 20);
 
         labelCrm.setText("CRM:");
         jPanel2.add(labelCrm);
@@ -184,77 +211,49 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel2.add(textDataNascimento);
         textDataNascimento.setBounds(540, 110, 130, 30);
 
-        tableEspecialidadesDoMedico.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tableEspecialidadesDoMedico);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(320, 200, 160, 150);
-
-        tableEspecialidades.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tableEspecialidades);
-
-        jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 200, 160, 150);
-
         labelNomeDoMedico.setText("Nome do(a) médico(a):");
         jPanel2.add(labelNomeDoMedico);
         labelNomeDoMedico.setBounds(380, 20, 130, 20);
 
         labelListaEspecialidades.setText("Lista de especialidades:");
         jPanel2.add(labelListaEspecialidades);
-        labelListaEspecialidades.setBounds(30, 180, 130, 20);
+        labelListaEspecialidades.setBounds(30, 180, 160, 20);
 
-        buttonRetirar.setText("<");
+        buttonRetirar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/seta-esquerda32.png"))); // NOI18N
+        buttonRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRetirarActionPerformed(evt);
+            }
+        });
         jPanel2.add(buttonRetirar);
-        buttonRetirar.setBounds(230, 290, 60, 40);
+        buttonRetirar.setBounds(190, 290, 60, 50);
 
-        buttonAdicionar.setText(">");
+        buttonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/seta-direita32 (2).png"))); // NOI18N
         buttonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarActionPerformed(evt);
             }
         });
         jPanel2.add(buttonAdicionar);
-        buttonAdicionar.setBounds(230, 230, 60, 40);
+        buttonAdicionar.setBounds(190, 230, 60, 50);
+
+        jListEspecialidadesMedico.setModel(new javax.swing.AbstractListModel<Especialidade>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jListEspecialidadesMedico);
+
+        jPanel2.add(jScrollPane3);
+        jScrollPane3.setBounds(290, 210, 120, 146);
+
+        jScrollPane4.setViewportView(jListEspecialidades);
+
+        jPanel2.add(jScrollPane4);
+        jScrollPane4.setBounds(30, 210, 120, 130);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 110, 710, 370);
-
-        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
-        jPanel1.setLayout(null);
-
-        labelTitulo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        labelTitulo.setText("Médicos - ADICIONAR");
-        jPanel1.add(labelTitulo);
-        labelTitulo.setBounds(60, 17, 300, 26);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 10, 40, 40);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 750, 60);
 
         buttonCancelar.setBackground(new java.awt.Color(246, 246, 246));
         buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/excluir32.png"))); // NOI18N
@@ -329,7 +328,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         textNomeDoMedico.setText(medico.getNome());
         textTelefone.setText(medico.getTelefone());
         textEmail.setText(medico.getEmail());
-//        medico.setDataNascimento(LocalDate.parse(textDataNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+//      medico.setDataNascimento(LocalDate.parse(textDataNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
         if (validarCadastro()) {
             MedicoDAO.gravar(medico);
@@ -423,8 +422,25 @@ public class MedicoDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_textDataNascimentoActionPerformed
 
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
-        // TODO add your handling code here:
+        
+        
+        List<Especialidade> especialidades = jListEspecialidades.getSelectedValuesList();
+                
+
+        for (Especialidade especialidade : especialidades) {
+            especialidadesMedico.add(especialidade);
+        }
+
+        especialidadesMedicoModel.clear();
+        especialidadesMedicoModel.addAll(especialidadesMedicoList);
+        jListEspecialidadesMedico.setModel(especialidadesMedicoModel);
     }//GEN-LAST:event_buttonAdicionarActionPerformed
+
+    private void buttonRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetirarActionPerformed
+        jListEspecialidades.remove(jListEspecialidades.getSelectedIndex());
+        
+       
+    }//GEN-LAST:event_buttonRetirarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -433,10 +449,12 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JButton buttonRetirar;
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<Especialidade> jListEspecialidades;
+    private javax.swing.JList<Especialidade> jListEspecialidadesMedico;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelCrm;
     private javax.swing.JLabel labelDataNascimento;
@@ -447,8 +465,6 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JLabel labelNomeDoMedico;
     private javax.swing.JLabel labelTelefone;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JTable tableEspecialidades;
-    private javax.swing.JTable tableEspecialidadesDoMedico;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textCrm;
     private javax.swing.JTextField textDataNascimento;
@@ -456,38 +472,15 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JTextField textNomeDoMedico;
     private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
-    private void criarTabelaEspecialidades() {
-        tableEspecialidades.setModel(EspecialidadeDAO.getTableModelListaEspecialidades());
 
-        //Desativar o redimencionamento da Jtable
-        tableEspecialidades.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        // Definir a largura de cada coluna
-        tableEspecialidades.getColumnModel().getColumn(0).setPreferredWidth(100);
-        tableEspecialidades.getColumnModel().getColumn(1).setPreferredWidth(300);
-
-        //Impedir/bloquear a movimentação das colunas 
-        tableEspecialidades.getTableHeader().setReorderingAllowed(false);
-
-        //Bloquear edição das células
-        tableEspecialidades.setDefaultEditor(Object.class, null);
-
-    }
-
-    private void criarTabelaEspecialidadesDoMedico() {
-        tableEspecialidadesDoMedico.setModel(MedicoDAO.getTableModelEspecialidades());
-
-        //Desativar o redimencionamento da Jtable
-        tableEspecialidadesDoMedico.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        // Definir a largura de cada coluna
-        tableEspecialidadesDoMedico.getColumnModel().getColumn(0).setPreferredWidth(100);
-        tableEspecialidadesDoMedico.getColumnModel().getColumn(1).setPreferredWidth(300);
-
-        //Impedir/bloquear a movimentação das colunas 
-        tableEspecialidadesDoMedico.getTableHeader().setReorderingAllowed(false);
-
-        //Bloquear edição das células
-        tableEspecialidadesDoMedico.setDefaultEditor(Object.class, null);
-    }
+//    private void listaTodasEspecialidadesModel(){
+//        jListEspecialidades.setModel((EspecialidadeDAO.listarTodos());
+//  
+//    }
+    
+    
+    
+    
+    
+   
 }

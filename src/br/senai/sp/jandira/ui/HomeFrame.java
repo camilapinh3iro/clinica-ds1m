@@ -146,11 +146,11 @@ public class HomeFrame extends javax.swing.JFrame {
         panelHome.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("www.sisacon.com.br");
         panelHome.add(jLabel3);
-        jLabel3.setBounds(770, 160, 150, 30);
+        jLabel3.setBounds(760, 320, 150, 30);
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 0));
@@ -169,21 +169,22 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Dados para contato:");
         panelHome.add(jLabel6);
-        jLabel6.setBounds(770, 104, 150, 30);
+        jLabel6.setBounds(29, 240, 150, 30);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("E-mail: suporte@sisacon.com.br");
+        jLabel7.setVerifyInputWhenFocusTarget(false);
         panelHome.add(jLabel7);
-        jLabel7.setBounds(700, 120, 220, 30);
+        jLabel7.setBounds(33, 260, 210, 30);
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Teletone: (11)95899-3245");
+        jLabel8.setText("Teletone: (11) 95899-3245");
         panelHome.add(jLabel8);
-        jLabel8.setBounds(740, 140, 180, 30);
+        jLabel8.setBounds(31, 280, 180, 30);
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 0));
         panelHome.add(jPanel2);

@@ -53,7 +53,7 @@ public class MedicoPanel extends javax.swing.JPanel {
 
         buttonExcluirMedico.setBackground(new java.awt.Color(246, 246, 246));
         buttonExcluirMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete.png"))); // NOI18N
-        buttonExcluirMedico.setToolTipText("Excluir plano de saúde selecionado");
+        buttonExcluirMedico.setToolTipText("Excluir médico selecionado");
         buttonExcluirMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirMedicoActionPerformed(evt);
@@ -64,7 +64,7 @@ public class MedicoPanel extends javax.swing.JPanel {
 
         buttonAlterarMedico.setBackground(new java.awt.Color(246, 246, 246));
         buttonAlterarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit.png"))); // NOI18N
-        buttonAlterarMedico.setToolTipText("Editar plano de saúde selecionado");
+        buttonAlterarMedico.setToolTipText("Editar médico selecionado");
         buttonAlterarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAlterarMedicoActionPerformed(evt);
@@ -75,7 +75,7 @@ public class MedicoPanel extends javax.swing.JPanel {
 
         buttonAdicionarMedico.setBackground(new java.awt.Color(246, 246, 246));
         buttonAdicionarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add.png"))); // NOI18N
-        buttonAdicionarMedico.setToolTipText("Adicionar plano de saúde");
+        buttonAdicionarMedico.setToolTipText("Adicionar médico");
         buttonAdicionarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarMedicoActionPerformed(evt);
