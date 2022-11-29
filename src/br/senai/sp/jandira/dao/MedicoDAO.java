@@ -1,6 +1,6 @@
 package br.senai.sp.jandira.dao;
 
-
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,9 @@ public class MedicoDAO {
 
     private Medico medico;
     private static ArrayList<Medico> medicos = new ArrayList<>();
+    private Especialidade especialidade;
+    private ArrayList<Especialidade> especialidades;
+
     private static final String ARQUIVO = "C:\\Users\\22282078\\projeto-java\\medico.txt";
     private static final String ARQUIVO_TEMP = "C:\\Users\\22282078\\projeto-java\\medico-temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
@@ -42,7 +46,7 @@ public class MedicoDAO {
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
-            bw.write(medico.getMedicoSeparadoPorPontoEVingula());
+            bw.write(medico.getMedicoSeparadoPontoVirgula());
             bw.newLine();
             bw.close();
 
@@ -66,40 +70,35 @@ public class MedicoDAO {
         atualizarArquivo();
         return false;
     }
-    
-    private static void atualizarArquivo(){
-        // Reconstruir um arquivo atualizado, ou seja,
-        //sem o plano que foi removido
+
+    private static void atualizarArquivo() {
         
-        // PASSO 01 - criar uma representação dos arquivos que serão manipulados
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
 
         try {
-        //Criar arquivo temporário
-         arquivoTemp.createNewFile();
-         
-         // Abrir o arquivo temporário para escrita
-         BufferedWriter bwTemp = Files.newBufferedWriter(
-                 PATH_TEMP,
-                 StandardOpenOption.APPEND,
-                 StandardOpenOption.WRITE);
-         
-         //Iterar na lista para adicionar os planos no arquivo temporário
-         for(Medico p: medicos){
-             bwTemp.write(p.getMedicoSeparadoPorPontoEVingula());
-             bwTemp.newLine();
-        }
-         
-         //Fechar o arquivo temporario
-         bwTemp.close();
-         
-         //Excluir arquivo atual - plano_de_saude.txt
-         arquivoAtual.delete();
-         
-         // Renomear arquivo temporário 
-         arquivoTemp.renameTo(arquivoAtual);
-        
+            //Criar arquivo temporário
+            arquivoTemp.createNewFile();
+
+            // Abrir o arquivo temporário para escrita
+            BufferedWriter bwTemp = Files.newBufferedWriter(
+                    PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            //Iterar na lista para adicionar os planos no arquivo temporário
+            for (Medico p : medicos) {
+                bwTemp.write(p.getMedicoSeparadoPontoVirgula());
+                bwTemp.newLine();
+            }
+
+            //Fechar o arquivo temporario
+            bwTemp.close();
+            arquivoAtual.delete();
+
+            // Renomear arquivo temporário 
+            arquivoTemp.renameTo(arquivoAtual);
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar o arquivo!",
                     "Erro",
@@ -122,12 +121,12 @@ public class MedicoDAO {
 
         for (Medico p : medicos) {
             if (p.getCodigo().equals(medico.getCodigo())) {
-               medicos.set(medicos.indexOf(p), medico);
+                medicos.set(medicos.indexOf(p), medico);
                 break;
             }
 
         }
-        
+
         atualizarArquivo();
     }
 
@@ -136,33 +135,41 @@ public class MedicoDAO {
     }
 
     public static void getListaMedicos() {
-        try {
+
+         try {     
             BufferedReader br = Files.newBufferedReader(PATH);
             String linha = "";
-            
             linha = br.readLine();
-            
-            while (linha != null && !linha.isEmpty()) {
-                String[] linhaVetor = linha.split(";");
-                Medico novoMedico = new Medico(
-                        Integer.valueOf(linhaVetor[0]), linhaVetor[1], linhaVetor[2]);
+            while(linha != null && !linha.isEmpty()){
+                String[] linhavetor = linha.split(";");
                 
-                medicos.add(novoMedico);
-                linha = br.readLine();
+                int i = 0;
+                ArrayList<Especialidade> especialidades = new ArrayList<>();
+                while(linhavetor.length > i + 6){
+                   especialidades.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(linhavetor[6 + i])));
+                   i++;
+                }
+                
+//                String[] data = linhavetor[5].split("/");
+//                int ano = Integer.parseInt(data[2]);
+//                int mes = Integer.parseInt(data[1]);
+//                int dia = Integer.parseInt(data[0]);
+//                LocalDate dataDeNascimento = LocalDate.of(ano,mes, dia);
+                
+                Medico m = new Medico
+                (Integer.valueOf(linhavetor[0]), linhavetor[1], linhavetor[2], linhavetor[3], linhavetor[4], LocalDate.now(), especialidades);
+                medicos.add(m);
+                linha = br.readLine();  
             }
-       
             br.close();
-
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro.", "Erro na leitura", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Algo deu errado!");
         }
 
     }
 
     public static DefaultTableModel getTableModel() {
-
-        //Matrix que receberá os planos de saúde 
-        // que serão utilizados na tabela
+        
         Object[][] dados = new Object[medicos.size()][3];
 
         //For each para extrair cada objeto plano de saúde do
@@ -172,42 +179,40 @@ public class MedicoDAO {
             dados[i][0] = p.getCodigo();
             dados[i][1] = p.getCrm();
             dados[i][2] = p.getNome();
-            
+
             i++;
         }
-        // Definir um vetor com os nomes das colunas da tabelas
-        String[] titulos = {"Código", "CRM", "Nome"};
+       
+        String[] titulos = {"Código", "CRM", "Nome do médico"};
 
-        //Criar um modelo que será utilizado pela JTable 
-        //para exibir os dados dos planos 
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
         return tableModel;
 
     }
-    
-    public static DefaultTableModel getTableModelEspecialidades() {
 
-        //Matrix que receberá os planos de saúde 
-        // que serão utilizados na tabela
-        Object[][] dados = new Object[medicos.size()][2];
+//    public static DefaultTableModel getTableModelEspecialidades() {
+//
+//        //Matrix que receberá os planos de saúde 
+//        // que serão utilizados na tabela
+//        Object[][] dados = new Object[medicos.size()][2];
+//
+//        //For each para extrair cada objeto plano de saúde do
+//        // arrraylist especialidades  e separar cada plano na matriz de dados 
+//        int i = 0;
+//        for (Medico p : medicos) {
+//            dados[i][0] = p.getCodigo();
+//            dados[i][1] = p.getNome();
+//
+//            i++;
+//        }
+//        // Definir um vetor com os nomes das colunas da tabelas
+//        String[] titulos = {"Código", "Especialidade"};
+//
+//        //Criar um modelo que será utilizado pela JTable 
+//        //para exibir os dados dos planos 
+//        DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
+//        return tableModel;
+//
+//    }
 
-        //For each para extrair cada objeto plano de saúde do
-        // arrraylist especialidades  e separar cada plano na matriz de dados 
-        int i = 0;
-        for (Medico p : medicos) {
-            dados[i][0] = p.getCodigo();
-            dados[i][1] = p.getNome();
-            
-            i++;
-        }
-        // Definir um vetor com os nomes das colunas da tabelas
-        String[] titulos = {"Código", "Especialidade"};
-
-        //Criar um modelo que será utilizado pela JTable 
-        //para exibir os dados dos planos 
-        DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
-        return tableModel;
-
-    }
-    
 }

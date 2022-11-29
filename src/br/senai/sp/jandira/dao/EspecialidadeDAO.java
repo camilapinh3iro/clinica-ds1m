@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -186,25 +187,37 @@ public class EspecialidadeDAO {
 
     }
     
-    public static DefaultTableModel getTableModelListaEspecialidades(){
+    public static DefaultTableModel getTableListaEspecialidadesModel() {
+
         Object[][] dados = new Object[especialidades.size()][2];
 
-        //For each para extrair cada objeto plano de saúde do
-        // arrraylist especialidades  e separar cada plano na matriz de dados 
         int i = 0;
-        for (Especialidade p : especialidades) {
-            dados[i][0] = p.getCodigo();
-            dados[i][1] = p.getNome();
+        for (Especialidade especialidade : especialidades) {
+            dados[i][0] = especialidade.getCodigo();
+            dados[i][1] = especialidade.getNome();
             i++;
         }
-        // Definir um vetor com os nomes das colunas da tabelas
-        String[] titulos = {"Código", "Nome da Especialidade"};
 
-        //Criar um modelo que será utilizado pela JTable 
-        //para exibir os dados dos planos 
+        String[] titulos = {"Código", "Nome da especialidade"};
+
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
+
         return tableModel;
+    }
+
+    public static ArrayList<String> getListaDeNomes() {
+        ArrayList<String> dados = new ArrayList<>();
+        for (Especialidade e : especialidades) {
+            dados.add(e.getNome());
+        }
         
+        DefaultListModel<String> ListaModel = new DefaultListModel<>();
+
+        ListaModel.addAll(dados);
+
+        return dados;
+
     }
 
 }
+
