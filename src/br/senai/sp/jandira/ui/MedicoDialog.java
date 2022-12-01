@@ -223,15 +223,10 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel2.add(buttonAdicionar);
         buttonAdicionar.setBounds(190, 230, 60, 50);
 
-        jListEspecialidadesMedico.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(jListEspecialidadesMedico);
 
         jPanel2.add(jScrollPane3);
-        jScrollPane3.setBounds(290, 210, 120, 146);
+        jScrollPane3.setBounds(290, 210, 120, 130);
 
         jScrollPane4.setViewportView(jListEspecialidades);
 
