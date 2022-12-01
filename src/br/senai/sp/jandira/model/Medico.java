@@ -7,10 +7,6 @@ import javax.swing.DefaultListModel;
 
 public class Medico extends Pessoa {
 
-    private LocalDate dataNascimento;
-    private DateTimeFormatter formatador;
-    private String dataFormatada = "";
-
     private static int contador = 100;
     private Integer codigo;
     private String crm;
@@ -18,9 +14,6 @@ public class Medico extends Pessoa {
     private Especialidade especialidade;
     private ArrayList<Especialidade> especialidades;
 
-//    private ArrayList<Medico> medicos = new ArrayList<>();
-    
-    // CONSTRUTORES
     public Medico() {
         atualizarCodigo();
     }
@@ -35,40 +28,17 @@ public class Medico extends Pessoa {
         atualizarCodigo();
     }
 
-    public Medico(Integer codigo, String crm, String nome, String telefone, String email, LocalDate dataDeNascimento, ArrayList<Especialidade> especialidades) {
+    public Medico(Integer codigo, String crm, String nome, String telefone, String email, String dataNascimento, ArrayList<Especialidade> especialidades) {
 
+        this.codigo = codigo;
         this.crm = crm;
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
-        setDataNascimento(dataDeNascimento);
+        setDataNascimento(dataNascimento);
         this.especialidades = especialidades;
+        this.contador = codigo;
 
-        this.codigo = codigo;
-        this.contador = codigo++;
-
-    }
-
-// metodos de acesso
-    private void atualizarCodigo() {
-        contador++;
-        this.codigo = contador;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getDataFormatada() {
-        return dataFormatada;
-    }
-
-    public void setDataFormatada(String data) {
-        this.dataFormatada = data;
     }
 
     public String getCrm() {
@@ -79,18 +49,16 @@ public class Medico extends Pessoa {
         this.crm = crm;
     }
 
-    public ArrayList<Especialidade> getEspecialidades() {
-        return especialidades;
-    }
-
     public Especialidade getEspecialidade() {
         return especialidade;
     }
 
+    public ArrayList<Especialidade> getEspecialidades() {
+        return especialidades;
+    }
+
     public void setEspecialidades(ArrayList<Especialidade> especialidades) {
-
         this.especialidades = especialidades;
-
     }
 
     public Integer getCodigo() {
@@ -101,23 +69,38 @@ public class Medico extends Pessoa {
         return contador;
     }
 
-    public String getMedicoSeparadoPontoVirgula() {
-        String codigoEspecialidades = "";
-        for (Especialidade e : especialidades) {
-            codigoEspecialidades += e.getCodigo() + ";";
-        }
-
-        return this.codigo + ";" + this.crm + ";" + this.getNome() + ";" + this.getTelefone() + ";" + this.getEmail() + ";" + this.getDataNascimento() + ";" + codigoEspecialidades;
+    private void atualizarCodigo() {
+        contador++;
+        this.codigo = contador;
     }
 
-    public ArrayList<String> getListaDeEspecialidadesDoMedico() {
-        ArrayList<String> dados = new ArrayList<>();
-        for (Especialidade e : especialidades) {
-            dados.add(e.getNome());
-        }
-        DefaultListModel<String> ListaModel = new DefaultListModel<>();
+    public String getMedicoSeparadoPontoVirgula() {
+        return this.codigo + ";"
+                + this.crm + ";"
+                + this.getNome() + ";"
+                + this.getTelefone() + ";"
+                + this.getEmail() + ";"
+                + getDataNascimento() + ";"
+                + getCodigosEspecialidades();
+    }
 
-        ListaModel.addAll(dados);
+    public String getCodigosEspecialidades() {
+        String codigosEspecialidades = "";
+        for (Especialidade especialidade : especialidades) {
+            codigosEspecialidades += especialidade.getCodigo() + ";";
+        }
+        return codigosEspecialidades;
+    }
+
+    public ArrayList<String> getEspecialidadesMedico() {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        ArrayList<String> dados = new ArrayList<>();
+
+        for (Especialidade especialidade : especialidades) {
+            dados.add(especialidade.getNome());
+        }
+
+        listModel.addAll(dados);
 
         return dados;
 

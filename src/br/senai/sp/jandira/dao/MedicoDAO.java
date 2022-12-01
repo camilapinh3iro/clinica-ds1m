@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +25,8 @@ public class MedicoDAO {
     private static final String ARQUIVO_TEMP = "C:\\Users\\22282078\\projeto-java\\medico-temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
+
+    private static final int QUANTIDADE_INDICES_ARQUIVO_PADRAO = 6;
 
     public MedicoDAO() {
 
@@ -72,7 +73,7 @@ public class MedicoDAO {
     }
 
     private static void atualizarArquivo() {
-        
+
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
 
@@ -118,16 +119,13 @@ public class MedicoDAO {
     }
 
     public static void alterar(Medico medico) {
-
-        for (Medico p : medicos) {
-            if (p.getCodigo().equals(medico.getCodigo())) {
-                medicos.set(medicos.indexOf(p), medico);
+        for (Medico m : medicos) {
+            if (m.getCodigo().equals(medico.getCodigo())) {
+                medicos.set(medicos.indexOf(m), medico);
                 break;
             }
-
+            atualizarArquivo();
         }
-
-        atualizarArquivo();
     }
 
     public static ArrayList<Medico> listarTodos() {
@@ -136,40 +134,43 @@ public class MedicoDAO {
 
     public static void getListaMedicos() {
 
-         try {     
+        try {
             BufferedReader br = Files.newBufferedReader(PATH);
+
             String linha = "";
+
             linha = br.readLine();
-            while(linha != null && !linha.isEmpty()){
-                String[] linhavetor = linha.split(";");
-                
-                int i = 0;
+
+            while (linha != null && !linha.isEmpty()) {
+
+                String[] linhaVetor = linha.split(";");
+
                 ArrayList<Especialidade> especialidades = new ArrayList<>();
-                while(linhavetor.length > i + 6){
-                   especialidades.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(linhavetor[6 + i])));
-                   i++;
+
+                int i = 0;
+                while (linhaVetor.length > i + QUANTIDADE_INDICES_ARQUIVO_PADRAO) {
+                    especialidades.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(linhaVetor[QUANTIDADE_INDICES_ARQUIVO_PADRAO + i])));
+                    i++;
                 }
-                
-//                String[] data = linhavetor[5].split("/");
-//                int ano = Integer.parseInt(data[2]);
-//                int mes = Integer.parseInt(data[1]);
-//                int dia = Integer.parseInt(data[0]);
-//                LocalDate dataDeNascimento = LocalDate.of(ano,mes, dia);
-                
-                Medico m = new Medico
-                (Integer.valueOf(linhavetor[0]), linhavetor[1], linhavetor[2], linhavetor[3], linhavetor[4], LocalDate.now(), especialidades);
-                medicos.add(m);
-                linha = br.readLine();  
+
+                Medico medico = new Medico(Integer.valueOf(linhaVetor[0]), linhaVetor[1], linhaVetor[2], linhaVetor[3], linhaVetor[4], linhaVetor[5], especialidades);
+
+                medicos.add(medico);
+                linha = br.readLine();
             }
+
             br.close();
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Algo deu errado!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Ocorreu um erro ao ler o arquvo");
+
         }
 
     }
 
     public static DefaultTableModel getTableModel() {
-        
+
         Object[][] dados = new Object[medicos.size()][3];
 
         //For each para extrair cada objeto plano de saúde do
@@ -182,37 +183,12 @@ public class MedicoDAO {
 
             i++;
         }
-       
+
         String[] titulos = {"Código", "CRM", "Nome do médico"};
 
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
         return tableModel;
 
     }
-
-//    public static DefaultTableModel getTableModelEspecialidades() {
-//
-//        //Matrix que receberá os planos de saúde 
-//        // que serão utilizados na tabela
-//        Object[][] dados = new Object[medicos.size()][2];
-//
-//        //For each para extrair cada objeto plano de saúde do
-//        // arrraylist especialidades  e separar cada plano na matriz de dados 
-//        int i = 0;
-//        for (Medico p : medicos) {
-//            dados[i][0] = p.getCodigo();
-//            dados[i][1] = p.getNome();
-//
-//            i++;
-//        }
-//        // Definir um vetor com os nomes das colunas da tabelas
-//        String[] titulos = {"Código", "Especialidade"};
-//
-//        //Criar um modelo que será utilizado pela JTable 
-//        //para exibir os dados dos planos 
-//        DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
-//        return tableModel;
-//
-//    }
 
 }

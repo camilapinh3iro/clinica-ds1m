@@ -2,6 +2,7 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Pessoa {
@@ -10,7 +11,7 @@ public class Pessoa {
     private String email;
     private String telefone;
     private LocalDate dataNascimento; 
-    
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
 
     public String getNome() {
@@ -37,12 +38,12 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public String getDataNascimento() {
+        return dataNascimento.format(dateTimeFormatter);
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = LocalDate.parse(dataNascimento, dateTimeFormatter);
     }
     
     

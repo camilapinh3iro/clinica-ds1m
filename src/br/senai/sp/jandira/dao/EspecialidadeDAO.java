@@ -21,8 +21,8 @@ public class EspecialidadeDAO {
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
     private static final String ARQUIVO = "C:\\Users\\22282078\\projeto-java\\especialidade.txt";
     private static final String ARQUIVO_TEMP = "C:\\Users\\22282078\\projeto-java\\especialidade-temp.txt";
-    private static final  Path PATH = Paths.get(ARQUIVO);
-    private static final  Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
+    private static final Path PATH = Paths.get(ARQUIVO);
+    private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
 
     public EspecialidadeDAO() {
 
@@ -35,7 +35,6 @@ public class EspecialidadeDAO {
     public static void gravar(Especialidade especialidade) {
         especialidades.add(especialidade);
 
-        
         // gravar a especialiade no arquivo txt
         try {
             // gravar planos de saude em arquivo txt
@@ -43,66 +42,65 @@ public class EspecialidadeDAO {
                     PATH,
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
-            
+
             bw.write(especialidade.getEspecialidadeSeparadoPorPontoEVingula());
             bw.newLine();
             bw.close();
-            
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(
-                    null, 
-                    "Ocorreu um erro ao gravar a especialidade. \n\nEntre em contato com o suporte.", 
-                    "Erro ao gravar", 
+                    null,
+                    "Ocorreu um erro ao gravar a especialidade. \n\nEntre em contato com o suporte.",
+                    "Erro ao gravar",
                     JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
     }
 
     public static boolean excluir(Integer codigo) {
         for (Especialidade p : especialidades) {
             if (p.getCodigo().equals(codigo)) {
                 especialidades.remove(p);
-                 break;
+                break;
             }
         }
         atualizarArquivo();
         return false;
     }
-    
-    private static void atualizarArquivo(){
+
+    private static void atualizarArquivo() {
         // Reconstruir um arquivo atualizado, ou seja,
         //sem o plano que foi removido
-        
+
         // PASSO 01 - criar uma representação dos arquivos que serão manipulados
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
 
         try {
-        //Criar arquivo temporário
-         arquivoTemp.createNewFile();
-         
-         // Abrir o arquivo temporário para escrita
-         BufferedWriter bwTemp = Files.newBufferedWriter(
-                 PATH_TEMP,
-                 StandardOpenOption.APPEND,
-                 StandardOpenOption.WRITE);
-         
-         //Iterar na lista para adicionar os planos no arquivo temporário
-         for(Especialidade p: especialidades){
-             bwTemp.write(p.getEspecialidadeSeparadoPorPontoEVingula());
-             bwTemp.newLine();
-        }
-         
-         //Fechar o arquivo temporario
-         bwTemp.close();
-         
-         //Excluir arquivo atual - plano_de_saude.txt
-         arquivoAtual.delete();
-         
-         // Renomear arquivo temporário 
-         arquivoTemp.renameTo(arquivoAtual);
-        
+            //Criar arquivo temporário
+            arquivoTemp.createNewFile();
+
+            // Abrir o arquivo temporário para escrita
+            BufferedWriter bwTemp = Files.newBufferedWriter(
+                    PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            //Iterar na lista para adicionar os planos no arquivo temporário
+            for (Especialidade p : especialidades) {
+                bwTemp.write(p.getEspecialidadeSeparadoPorPontoEVingula());
+                bwTemp.newLine();
+            }
+
+            //Fechar o arquivo temporario
+            bwTemp.close();
+
+            //Excluir arquivo atual - plano_de_saude.txt
+            arquivoAtual.delete();
+
+            // Renomear arquivo temporário 
+            arquivoTemp.renameTo(arquivoAtual);
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar o arquivo!",
                     "Erro",
@@ -130,7 +128,7 @@ public class EspecialidadeDAO {
             }
 
         }
-        
+
         atualizarArquivo();
     }
 
@@ -142,18 +140,18 @@ public class EspecialidadeDAO {
         try {
             BufferedReader br = Files.newBufferedReader(PATH);
             String linha = "";
-            
+
             linha = br.readLine();
-            
+
             while (linha != null && !linha.isEmpty()) {
                 String[] linhaVetor = linha.split(";");
                 Especialidade novaEspecialidade = new Especialidade(
                         Integer.valueOf(linhaVetor[0]), linhaVetor[1], linhaVetor[2]);
-                
+
                 especialidades.add(novaEspecialidade);
                 linha = br.readLine();
             }
-       
+
             br.close();
 
         } catch (IOException ex) {
@@ -186,23 +184,19 @@ public class EspecialidadeDAO {
         return tableModel;
 
     }
-    
-    public static DefaultTableModel getTableListaEspecialidadesModel() {
 
-        Object[][] dados = new Object[especialidades.size()][2];
+    public static ArrayList<String> getNomesEspecialidades() {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        ArrayList<String> dados = new ArrayList<>();
 
-        int i = 0;
         for (Especialidade especialidade : especialidades) {
-            dados[i][0] = especialidade.getCodigo();
-            dados[i][1] = especialidade.getNome();
-            i++;
+            dados.add(especialidade.getNome());
         }
 
-        String[] titulos = {"Código", "Nome da especialidade"};
+        listModel.addAll(dados);
 
-        DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
+        return dados;
 
-        return tableModel;
     }
 
     public static ArrayList<String> getListaDeNomes() {
@@ -210,7 +204,7 @@ public class EspecialidadeDAO {
         for (Especialidade e : especialidades) {
             dados.add(e.getNome());
         }
-        
+
         DefaultListModel<String> ListaModel = new DefaultListModel<>();
 
         ListaModel.addAll(dados);
@@ -220,4 +214,3 @@ public class EspecialidadeDAO {
     }
 
 }
-
